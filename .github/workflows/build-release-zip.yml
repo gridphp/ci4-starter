@@ -1,6 +1,6 @@
 name: Build release zip
 
-# Builds a fully self-contained zip (vendor/, public/lib/, seeded demo db)
+# Builds a fully self-contained zip (vendor/, public/gridphp/assets/, seeded demo db)
 # for people who don't want to run Composer themselves. Composer install
 # already triggers ComposerScript::fetchCoreFiles + publishAssets via
 # post-install-cmd, so this workflow doesn't need to duplicate that logic.
@@ -30,15 +30,19 @@ jobs:
 
       - name: Warn if GridPHP JS/CSS assets are still missing
         run: |
-          if [ ! -d "public/lib/js" ]; then
-            echo "::warning::public/lib/js not present - vendor/gridphp/engine/lib/ needs the full GridPHP archive (from https://www.gridphp.com/download/) committed or otherwise made available to this workflow before building. The zip will still build, just without the grid JS/CSS."
+          if [ ! -d "public/gridphp/assets/jqgrid" ]; then
+            echo "::warning::public/gridphp/assets/jqgrid not present - vendor/gridphp/gridphp-community/lib/ needs the full GridPHP archive (from https://www.gridphp.com/download/) committed or otherwise made available to this workflow before building. The zip will still build, just without the grid JS/CSS."
           fi
 
       - name: Create .env from template
         run: cp env .env
 
-      - name: Seed demo SQLite database
-        run: php app/Database/seed_sqlite.php
+      - name: Copy sample SQLite database
+        run: |
+          mkdir -p writable/db
+          if [ -f "vendor/gridphp/gridphp-community/demos/sample-db/database.db" ]; then
+            cp vendor/gridphp/gridphp-community/demos/sample-db/database.db writable/db/database.db
+          fi
 
       - name: Package zip
         run: |
