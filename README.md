@@ -148,7 +148,7 @@ Include GridPHP scripts/styles in your view header and output `$output`:
 
 This walkthrough demonstrates a feature-rich Master Grid linked to a Detail Subgrid via an AJAX endpoint.
 
-#### 1. Master Controller & Subgrid Endpoint (`app/Controllers/Home.php`)
+#### 1. Controller for Master & Detail (`app/Controllers/Home.php`)
 
 ```php
 namespace App\Controllers;
@@ -215,11 +215,16 @@ class Home extends BaseController
 
 #### 2. Routes (`app/Config/Routes.php`)
 
-Ensure routes are registered for both master page and subgrid endpoint:
+Ensure routes are registered both `get` and `post` for master and detail endpoint:
 
 ```php
+// for fetching data
 $routes->get('/', 'Home::index');
 $routes->get('detail', 'Home::detail');
+
+// for CRUD operations
+$routes->post('/', 'Home::index');
+$routes->post('detail', 'Home::detail');
 ```
 
 #### 3. View (`app/Views/welcome_message.php`)

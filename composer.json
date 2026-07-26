@@ -1,6 +1,17 @@
 {
     "name": "gridphp/ci4-starter",
-    "description": "CodeIgniter 4 starter pre-wired for GridPHP (grid.jqgrid) integration, per https://www.gridphp.com/docs/integrations/codeigniter-integration/",
+    "description": "CodeIgniter 4 application starter pre-configured with GridPHP datagrid integration for fast PHP CRUD datagrid development.",
+    "keywords": [
+        "codeigniter",
+        "codeigniter4",
+        "ci4",
+        "gridphp",
+        "datagrid",
+        "grid",
+        "crud",
+        "appstarter",
+        "starter-kit"
+    ],
     "license": "MIT",
     "type": "project",
     "homepage": "https://gridphp.com",
