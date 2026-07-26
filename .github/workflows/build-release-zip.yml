@@ -1,0 +1,66 @@
+name: Build release zip
+
+# Builds a fully self-contained zip (vendor/, public/lib/, seeded demo db)
+# for people who don't want to run Composer themselves. Composer install
+# already triggers ComposerScript::fetchCoreFiles + publishAssets via
+# post-install-cmd, so this workflow doesn't need to duplicate that logic.
+
+on:
+  push:
+    tags:
+      - "v*.*.*"
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: intl, mbstring, sqlite3, pdo_sqlite, curl
+          tools: composer:v2
+
+      - name: Install dependencies (triggers GridPHP fetch + publish)
+        run: composer install --no-dev --optimize-autoloader --no-interaction
+
+      - name: Warn if GridPHP JS/CSS assets are still missing
+        run: |
+          if [ ! -d "public/lib/js" ]; then
+            echo "::warning::public/lib/js not present - vendor/gridphp/engine/lib/ needs the full GridPHP archive (from https://www.gridphp.com/download/) committed or otherwise made available to this workflow before building. The zip will still build, just without the grid JS/CSS."
+          fi
+
+      - name: Create .env from template
+        run: cp env .env
+
+      - name: Seed demo SQLite database
+        run: php app/Database/seed_sqlite.php
+
+      - name: Package zip
+        run: |
+          mkdir -p dist
+          ZIP_NAME="ci4-gridphp-quickstart-${GITHUB_REF_NAME:-manual}.zip"
+          zip -r "dist/${ZIP_NAME}" . \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "tests/*" \
+            -x "dist/*" \
+            -x "*.log"
+          echo "ZIP_NAME=${ZIP_NAME}" >> "$GITHUB_ENV"
+
+      - name: Upload artifact (workflow_dispatch runs)
+        if: github.event_name == 'workflow_dispatch'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.ZIP_NAME }}
+          path: dist/${{ env.ZIP_NAME }}
+
+      - name: Attach to GitHub Release (tag pushes)
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/${{ env.ZIP_NAME }}
