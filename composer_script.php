@@ -214,8 +214,7 @@ class ComposerScript
 
         $lines = [
             "",
-            "You can move '{$projectName}' folder to your webroot ",
-            "OR start your local server using:",
+            "Start your local server using:",
             "",
             "1. cd {$projectName}",
             "2. php spark serve",
