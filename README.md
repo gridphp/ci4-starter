@@ -11,7 +11,7 @@ For more information, see:
 - [CodeIgniter 4 User Guide](https://codeigniter.com/user_guide/)
 - [GridPHP CodeIgniter Integration Guide](https://www.gridphp.com/docs/integrations/codeigniter-integration/)
 
-[![GridPHP CodeIgniter Integration Guide](https://www.gridphp.com/wp-content/uploads/ci4-starter.png)](https://gridphp.com/docs)
+[![GridPHP CodeIgniter Integration Guide](https://www.gridphp.com/wp-content/uploads/ci4-starter.jpg)](https://gridphp.com/docs)
 
 ---
 
@@ -263,8 +263,10 @@ $routes->post('detail', 'Home::detail');
 ## Directory & File Overview
 
 - `app/Config/GridPHP.php`: Bridge configuration connecting CI4 database settings to GridPHP.
-- `app/Controllers/Home.php`: Controller featuring master and subgrid methods.
+- `app/Controllers/Home.php`: Controller featuring master and detail grid methods.
 - `app/Views/welcome_message.php`: View file loading GridPHP styles/scripts and displaying grid output.
+- `app/Config/Routes.php`: Added routes for grid examples.
+- `writable/db/database.db`: SQLite database for sample data
 - `public/gridphp/assets/`: Published GridPHP front-end dependencies (JS, CSS, Themes).
 - `composer_script.php`: Automated script for environment setup, file downloads, and asset publishing.
 
