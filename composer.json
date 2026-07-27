@@ -1,6 +1,6 @@
 {
     "name": "gridphp/ci4-starter",
-    "description": "CodeIgniter 4 application starter pre-configured with GridPHP datagrid integration for fast PHP CRUD datagrid development.",
+    "description": "CodeIgniter-4 application starter pre-configured with GridPHP low-code DataGrid designed for building lightning-fast CRUD, DB admin panels, CRMs & backoffice tools. It generates fully interactive, mobile-ready CRUDs from db tables of MySQL, PostgreSQL/Supabase, Oracle & SQLServer",
     "keywords": [
         "codeigniter",
         "codeigniter4",
@@ -23,7 +23,7 @@
     "require": {
         "php": "^8.2",
         "codeigniter4/framework": "^4.7",   
-        "gridphp/gridphp-community": "^1.0.3"
+        "gridphp/gridphp-community": "^1.0.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9",
