@@ -237,12 +237,12 @@
 
 <section>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url('gridphp/assets/themes/base/jquery-ui.custom.css') ?>">
-    <link rel="stylesheet" type="text/css" media="screen" href="<?= base_url('gridphp/assets/jqgrid/css/ui.jqgrid.css') ?>">
-    <script src="<?= base_url('gridphp/assets/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('gridphp/assets/jqgrid/js/i18n/grid.locale-en.js') ?>"></script>
-    <script src="<?= base_url('gridphp/assets/themes/jquery-ui.custom.min.js') ?>"></script>
-    <script src="<?= base_url('gridphp/assets/jqgrid/js/jquery.jqGrid.min.js') ?>"></script>
+    <link rel="stylesheet" type="text/css" media="screen" href="gridphp/assets/themes/base/jquery-ui.custom.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="gridphp/assets/jqgrid/css/ui.jqgrid.css">
+    <script src="gridphp/assets/jquery.min.js"></script>
+    <script src="gridphp/assets/jqgrid/js/i18n/grid.locale-en.js"></script>
+    <script src="gridphp/assets/themes/jquery-ui.custom.min.js"></script>
+    <script src="gridphp/assets/jqgrid/js/jquery.jqGrid.min.js"></script>
     
     <div>
         <?= $output ?>
