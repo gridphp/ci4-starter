@@ -11,6 +11,8 @@ For more information, see:
 - [CodeIgniter 4 User Guide](https://codeigniter.com/user_guide/)
 - [GridPHP CodeIgniter Integration Guide](https://www.gridphp.com/docs/integrations/codeigniter-integration/)
 
+[![GridPHP CodeIgniter Integration Guide](https://www.gridphp.com/wp-content/uploads/ci4-starter.png)](https://gridphp.com/docs)
+
 ---
 
 ## Installation & Updates
